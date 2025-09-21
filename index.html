@@ -822,28 +822,50 @@
         function deletePost(postId) {
             if (confirm('Are you sure you want to delete this post? This action cannot be undone.')) {
                 // Remove from array
+                const originalLength = blogPosts.length;
                 blogPosts = blogPosts.filter(p => p.id !== postId);
                 
-                // Save to localStorage
-                saveToStorage();
-                
-                // Re-render all posts
-                renderAllPosts();
-                
-                // Show success message
-                showNotification('Blog post deleted successfully!', 'success');
+                if (blogPosts.length < originalLength) {
+                    // Save to localStorage
+                    saveToStorage();
+                    
+                    // Re-render all posts immediately
+                    renderAllPosts();
+                    
+                    // Apply current filter if any
+                    const activeFilter = document.querySelector('.filter-btn.active');
+                    if (activeFilter && activeFilter.getAttribute('data-category') !== 'all') {
+                        filterPostsByCategory(activeFilter.getAttribute('data-category'));
+                    }
+                    
+                    // Show success message
+                    showNotification('Blog post deleted successfully!', 'success');
+                } else {
+                    showNotification('Error: Could not delete post', 'error');
+                }
             }
+        }
+
+        function filterPostsByCategory(category) {
+            document.querySelectorAll('.blog-post').forEach(post => {
+                if (category === 'all' || post.getAttribute('data-category') === category) {
+                    post.style.display = 'block';
+                } else {
+                    post.style.display = 'none';
+                }
+            });
         }
 
         function showNotification(message, type = 'info') {
             // Create notification element
             const notification = document.createElement('div');
             notification.className = `notification notification-${type}`;
+            const bgColor = type === 'success' ? '#4caf50' : type === 'error' ? '#f44336' : '#2196f3';
             notification.style.cssText = `
                 position: fixed;
                 top: 20px;
                 right: 20px;
-                background: ${type === 'success' ? '#4caf50' : '#2196f3'};
+                background: ${bgColor};
                 color: white;
                 padding: 12px 24px;
                 border-radius: 6px;
@@ -950,13 +972,7 @@
                     this.classList.add('active');
                     
                     // Filter posts
-                    document.querySelectorAll('.blog-post').forEach(post => {
-                        if (category === 'all' || post.getAttribute('data-category') === category) {
-                            post.style.display = 'block';
-                        } else {
-                            post.style.display = 'none';
-                        }
-                    });
+                    filterPostsByCategory(category);
                 });
             });
         });
