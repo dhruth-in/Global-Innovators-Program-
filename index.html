@@ -591,6 +591,21 @@
         <div class="sidebar">
             <h3>About This Blog</h3>
             <p>This learning journal captures insights, breakthroughs, and reflections from my journey through the Global Innovators Program. Each post represents a meaningful learning moment that has shaped my understanding of innovation, leadership, and global collaboration.</p>
+            
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e1e8ed;">
+                <h3>Blog Management</h3>
+                <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1rem;">
+                    <button onclick="exportBlogData()" class="btn btn-secondary" style="font-size: 0.9rem; padding: 8px 12px;">
+                        📄 Export Blog Data
+                    </button>
+                    <button onclick="clearAllData()" class="btn" style="background: #ea4335; color: white; font-size: 0.9rem; padding: 8px 12px;">
+                        🗑️ Clear All Posts
+                    </button>
+                </div>
+                <p style="font-size: 0.8rem; color: #5f6368; margin-top: 1rem;">
+                    💾 Your posts are automatically saved to your browser's local storage and will persist between sessions.
+                </p>
+            </div>
         </div>
     </main>
 
@@ -601,8 +616,40 @@
     </footer>
 
     <script>
+        // Storage management
+        const STORAGE_KEY = 'globalInnovatorsBlog';
         let blogPosts = [];
-        let postIdCounter = 3; // Start from 3 since we have 2 sample posts
+        let postIdCounter = 1;
+
+        // Load data from localStorage
+        function loadFromStorage() {
+            try {
+                const stored = localStorage.getItem(STORAGE_KEY);
+                if (stored) {
+                    const data = JSON.parse(stored);
+                    blogPosts = data.posts || [];
+                    postIdCounter = data.nextId || 1;
+                }
+            } catch (error) {
+                console.error('Error loading from storage:', error);
+                blogPosts = [];
+                postIdCounter = 1;
+            }
+        }
+
+        // Save data to localStorage
+        function saveToStorage() {
+            try {
+                const data = {
+                    posts: blogPosts,
+                    nextId: postIdCounter
+                };
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            } catch (error) {
+                console.error('Error saving to storage:', error);
+                alert('Unable to save blog post. Storage may be full.');
+            }
+        }
 
         function togglePostForm() {
             const form = document.getElementById('postForm');
@@ -652,60 +699,106 @@
                     month: 'long', 
                     day: 'numeric' 
                 }),
-                readTime
+                readTime,
+                timestamp: Date.now()
             };
 
             blogPosts.unshift(post);
-            renderBlogPosts();
+            saveToStorage(); // Save to localStorage
+            renderAllPosts();
             cancelPost();
+            
+            // Show success message
+            showNotification('Blog post published successfully!', 'success');
         }
 
-        function renderBlogPosts() {
+        function renderAllPosts() {
             const postsContainer = document.getElementById('blogPosts');
-            const existingSamplePosts = postsContainer.innerHTML;
-            
-            if (blogPosts.length === 0) return;
-
-            // Clear and rebuild with new posts first, then sample posts
             postsContainer.innerHTML = '';
 
+            // Render user posts
             blogPosts.forEach(post => {
-                const article = document.createElement('article');
-                article.className = 'blog-post';
-                article.setAttribute('data-category', post.category);
-                
-                article.innerHTML = `
-                    <div class="post-header">
-                        <div class="post-category">${post.category}</div>
-                        <h2 class="post-title">
-                            <a href="#" onclick="toggleFullPost(this)">${post.title}</a>
-                        </h2>
-                        <div class="post-meta">Published on ${post.date} • ${post.readTime} min read</div>
-                    </div>
-                    <div class="post-excerpt">
-                        ${post.excerpt}
-                    </div>
-                    <div class="post-tags">
-                        ${post.tags.map(tag => `<a href="#" class="tag">${tag}</a>`).join('')}
-                    </div>
-                    <div class="read-more">
-                        <a href="#" onclick="toggleFullPost(this)">Read full post →</a>
-                    </div>
-                    <div class="post-full">
-                        <div class="post-content">
-                            ${formatPostContent(post.content)}
-                        </div>
-                        <div class="post-actions">
-                            <button class="delete-btn" onclick="deletePost(this)">Delete Post</button>
-                        </div>
-                    </div>
-                `;
-                
+                const article = createPostElement(post, true); // true = user post (deletable)
                 postsContainer.appendChild(article);
             });
 
-            // Add back sample posts
-            postsContainer.innerHTML += existingSamplePosts;
+            // Add sample posts if no user posts exist
+            if (blogPosts.length === 0) {
+                addSamplePosts();
+            }
+
+            // Update post counter
+            updatePostCounter();
+        }
+
+        function createPostElement(post, isDeletable = false) {
+            const article = document.createElement('article');
+            article.className = 'blog-post';
+            article.setAttribute('data-category', post.category);
+            article.setAttribute('data-post-id', post.id);
+            
+            const deleteButton = isDeletable ? 
+                `<button class="delete-btn" onclick="deletePost(${post.id})">Delete Post</button>` : 
+                '';
+
+            article.innerHTML = `
+                <div class="post-header">
+                    <div class="post-category">${post.category}</div>
+                    <h2 class="post-title">
+                        <a href="#" onclick="toggleFullPost(this)">${post.title}</a>
+                    </h2>
+                    <div class="post-meta">Published on ${post.date} • ${post.readTime} min read</div>
+                </div>
+                <div class="post-excerpt">
+                    ${post.excerpt}
+                </div>
+                <div class="post-tags">
+                    ${post.tags.map(tag => `<a href="#" class="tag">${tag}</a>`).join('')}
+                </div>
+                <div class="read-more">
+                    <a href="#" onclick="toggleFullPost(this)">Read full post →</a>
+                </div>
+                <div class="post-full">
+                    <div class="post-content">
+                        ${formatPostContent(post.content)}
+                    </div>
+                    <div class="post-actions">
+                        ${deleteButton}
+                    </div>
+                </div>
+            `;
+            
+            return article;
+        }
+
+        function addSamplePosts() {
+            const samplePosts = [
+                {
+                    id: 'sample-1',
+                    title: 'The Innovation Mindset: Embracing Failure as a Learning Tool',
+                    category: 'Innovation',
+                    excerpt: 'One of the most profound learnings from the Global Innovators Program has been understanding that failure is not the opposite of success—it\'s a stepping stone to breakthrough innovations. This shift in perspective has transformed how I approach challenges and uncertainty.',
+                    content: 'During our innovation workshops, I encountered a powerful framework that completely changed my relationship with failure. Instead of viewing setbacks as roadblocks, I learned to see them as data points that guide us toward better solutions.\n\nThe Pivot Principle\n\nThe program introduced us to the concept of "intelligent pivoting"—the ability to quickly adapt our approach based on new information without losing sight of our core objectives. This isn\'t about giving up when things get tough; it\'s about being agile enough to find alternative paths to success.\n\nBuilding Resilience Through Experimentation\n\nOne exercise that particularly resonated with me involved rapid prototyping with intentional failure points. We were encouraged to build solutions that we expected might not work, specifically to learn from the failure modes. This approach revealed insights that traditional "safe" planning would never uncover.\n\nThe key insight? Innovation thrives in environments where psychological safety allows for bold experimentation. When teams know that intelligent failures are valued as learning opportunities, they\'re more likely to pursue breakthrough ideas rather than incremental improvements.',
+                    tags: ['mindset', 'innovation', 'failure', 'learning'],
+                    date: 'March 15, 2024',
+                    readTime: 5
+                },
+                {
+                    id: 'sample-2',
+                    title: 'Cross-Cultural Leadership: Lessons from Global Collaboration',
+                    category: 'Leadership',
+                    excerpt: 'Working with innovators from 15 different countries taught me that effective leadership isn\'t about imposing a single vision—it\'s about creating space for diverse perspectives to converge into something greater than the sum of its parts.',
+                    content: 'Leading a diverse, global team during our capstone project challenged every assumption I had about effective leadership. What I discovered was that the most powerful leadership approach wasn\'t about finding common ground—it was about leveraging our differences as strengths.\n\nThe Power of Cognitive Diversity\n\nEach team member brought not just different skills, but fundamentally different ways of approaching problems. Our colleague from Japan excelled at long-term strategic thinking, while our Brazilian teammate brought incredible creative energy to brainstorming sessions. Rather than trying to homogenize these approaches, we learned to sequence them strategically.\n\nThe breakthrough came when I shifted from trying to be the decision-maker to becoming the "cognitive conductor"—orchestrating when and how different thinking styles could best contribute to our collective intelligence.',
+                    tags: ['leadership', 'culture', 'collaboration', 'diversity'],
+                    date: 'March 10, 2024',
+                    readTime: 7
+                }
+            ];
+
+            samplePosts.forEach(post => {
+                const article = createPostElement(post, false); // false = not deletable
+                document.getElementById('blogPosts').appendChild(article);
+            });
         }
 
         function formatPostContent(content) {
@@ -726,44 +819,145 @@
                 : 'Read full post →';
         }
 
-        function deletePost(button) {
-            if (confirm('Are you sure you want to delete this post?')) {
-                const post = button.closest('.blog-post');
-                const postTitle = post.querySelector('.post-title a').textContent;
+        function deletePost(postId) {
+            if (confirm('Are you sure you want to delete this post? This action cannot be undone.')) {
+                // Remove from array
+                blogPosts = blogPosts.filter(p => p.id !== postId);
                 
-                // Remove from array if it's a user-created post
-                blogPosts = blogPosts.filter(p => p.title !== postTitle);
+                // Save to localStorage
+                saveToStorage();
                 
-                // Remove from DOM
-                post.remove();
+                // Re-render all posts
+                renderAllPosts();
+                
+                // Show success message
+                showNotification('Blog post deleted successfully!', 'success');
             }
         }
 
-        // Category filtering
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const category = this.getAttribute('data-category');
-                
-                // Update active filter
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Filter posts
-                document.querySelectorAll('.blog-post').forEach(post => {
-                    if (category === 'all' || post.getAttribute('data-category') === category) {
-                        post.style.display = 'block';
-                    } else {
-                        post.style.display = 'none';
+        function showNotification(message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#4caf50' : '#2196f3'};
+                color: white;
+                padding: 12px 24px;
+                border-radius: 6px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+                z-index: 10000;
+                font-family: Arial, sans-serif;
+                font-weight: 500;
+                opacity: 0;
+                transform: translateX(300px);
+                transition: all 0.3s ease;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => {
+                notification.style.opacity = '1';
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(300px)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
                     }
-                });
-            });
-        });
+                }, 300);
+            }, 3000);
+        }
 
-        // Initialize
+        function updatePostCounter() {
+            const count = blogPosts.length;
+            const existingCounter = document.querySelector('.post-counter');
+            if (existingCounter) {
+                existingCounter.remove();
+            }
+            
+            if (count > 0) {
+                const counter = document.createElement('div');
+                counter.className = 'post-counter';
+                counter.style.cssText = `
+                    background: #e8f0fe;
+                    color: #1a73e8;
+                    padding: 8px 16px;
+                    border-radius: 20px;
+                    font-size: 0.9rem;
+                    font-weight: 500;
+                    margin-bottom: 1rem;
+                    display: inline-block;
+                    font-family: Arial, sans-serif;
+                `;
+                counter.textContent = `${count} personal blog post${count !== 1 ? 's' : ''}`;
+                
+                const categoryFilter = document.querySelector('.category-filter');
+                categoryFilter.parentNode.insertBefore(counter, categoryFilter);
+            }
+        }
+
+        function clearAllData() {
+            if (confirm('Are you sure you want to delete ALL your blog posts? This action cannot be undone.')) {
+                localStorage.removeItem(STORAGE_KEY);
+                blogPosts = [];
+                postIdCounter = 1;
+                renderAllPosts();
+                showNotification('All blog posts cleared!', 'success');
+            }
+        }
+
+        // Export/Import functionality
+        function exportBlogData() {
+            const data = {
+                posts: blogPosts,
+                nextId: postIdCounter,
+                exportDate: new Date().toISOString()
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `global-innovators-blog-${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showNotification('Blog data exported successfully!', 'success');
+        }
+
+        // Category filtering
         document.addEventListener('DOMContentLoaded', function() {
-            // Add click handlers to existing sample posts
-            document.querySelectorAll('.blog-post .post-title a, .blog-post .read-more a').forEach(link => {
-                link.setAttribute('onclick', 'toggleFullPost(this)');
+            loadFromStorage();
+            renderAllPosts();
+
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    // Update active filter
+                    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Filter posts
+                    document.querySelectorAll('.blog-post').forEach(post => {
+                        if (category === 'all' || post.getAttribute('data-category') === category) {
+                            post.style.display = 'block';
+                        } else {
+                            post.style.display = 'none';
+                        }
+                    });
+                });
             });
         });
     </script>
