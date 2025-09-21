@@ -1,130 +1,122 @@
-/*
-    Standardized CSS for Global Innovator's Program Website
-    This file contains all repeated styles for a consistent look.
-*/
-
 /* General Body and Font Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #000; /* Black background */
-    color: #fff; /* White text for content */
+    background-color: #000;
+    color: #fff;
     margin: 0;
     padding: 0;
 }
 
-/* Header Banner Styles */
-.header-banner {
-    background-color: #000;
-    color: #f8c8dc; /* Pastel Pink */
-    text-align: center;
-    padding: 20px;
-    /* Removed: border-bottom: 2px solid #f8c8dc; */
+/* Header and Navigation Styles */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    border-bottom: 2px solid #f8c8dc;
 }
 
 .header-banner h1 {
+    color: #f8c8dc;
+    font-size: 1.8em;
     margin: 0;
-    font-size: 2.5em;
-}
-
-/* Navigation Menu Styles */
-nav {
-    text-align: center;
-    padding: 10px;
-    /* Removed: border-bottom: 2px solid #f8c8dc; */
 }
 
 nav a {
     color: #fff;
     text-decoration: none;
-    padding: 10px 20px;
-    margin: 0 10px;
-    background-color: #000;
-    border: 1px solid #f8c8dc; /* Pastel Pink border for buttons */
+    padding: 10px 15px;
+    margin: 0 5px;
+    background-color: transparent;
+    border: none;
     border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
+    transition: color 0.3s;
 }
 
 nav a:hover {
-    background-color: #f8c8dc; /* Pastel Pink background on hover */
-    color: #000; /* Black text on hover */
-}
-
-/* Main Content Area Styles */
-.content {
-    padding: 40px;
-    max-width: 800px; /* Maximum width for readability */
-    margin: auto; /* Center the content block */
-    line-height: 1.6;
-}
-
-.content h2 {
-    color: #f8c8dc; /* Pastel Pink for main headings */
-    text-align: center;
-}
-
-/* Blog Page Specific Styles */
-.blog-post {
-    border: 1px solid #f8c8dc;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-}
-
-.blog-post h3 {
-    color: #f8c8dc;
-    margin-top: 0;
-}
-
-.blog-post a {
-    text-decoration: none;
-    color: #fff;
-}
-
-.blog-post a:hover {
-    text-decoration: underline;
-}
-
-/* Contact Form Specific Styles */
-.contact-form {
-    background-color: #111; /* Slightly lighter black for the form container */
-    padding: 20px;
-    border: 1px solid #f8c8dc;
-    border-radius: 10px;
-    text-align: left;
-    max-width: 600px;
-    margin: auto;
-}
-
-.contact-form label {
-    display: block;
-    margin-bottom: 5px;
     color: #f8c8dc;
 }
 
-.contact-form input,
-.contact-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #f8c8dc;
-    background-color: #222; /* Another shade of black for input fields */
-    color: #fff;
-    border-radius: 5px;
-    box-sizing: border-box; /* Ensures padding doesn't affect total width */
+/* User Info Section */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.contact-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #f8c8dc;
-    color: #000;
-    border: none;
+.username {
+    color: #f8c8dc;
+    font-size: 0.9em;
+}
+
+.logout-btn {
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid #f8c8dc;
+    padding: 8px 15px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 1em;
-    border-radius: 5px;
     transition: background-color 0.3s;
 }
 
-.contact-form button:hover {
-    background-color: #fff;
+.logout-btn:hover {
+    background-color: #f8c8dc;
+    color: #000;
+}
+
+/* Glowing Buttons and Active Link */
+.active,
+.cta-button {
+    color: #000 !important;
+    background-color: #f8c8dc;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 0 10px #f8c8dc, 0 0 20px #f8c8dc;
+    transition: box-shadow 0.3s;
+    border: none;
+}
+
+.cta-button {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.active:hover,
+.cta-button:hover {
+    box-shadow: 0 0 15px #f8c8dc, 0 0 30px #f8c8dc;
+}
+
+/* Content Card Container */
+.content-card {
+    background-color: #1a1a1a;
+    border: 2px solid #f8c8dc;
+    border-radius: 15px;
+    box-shadow: 0 0 15px #f8c8dc;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 50px;
+    text-align: center;
+}
+
+.content-card h2 {
+    color: #f8c8dc;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.content-card p {
+    color: #fff;
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+/* Adjustments for other pages */
+.content {
+    /* Kept for consistency on blog and contact pages */
+    padding: 40px;
+    max-width: 800px;
+    margin: auto;
+    line-height: 1.6;
 }
