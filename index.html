@@ -4,7 +4,130 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global Innovator's Program - Home</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* General Body and Font Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header and Navigation Styles */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    border-bottom: 2px solid #f8c8dc;
+}
+
+.header-banner h1 {
+    color: #f8c8dc;
+    font-size: 1.8em;
+    margin: 0;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #f8c8dc;
+}
+
+/* User Info Section */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.username {
+    color: #f8c8dc;
+    font-size: 0.9em;
+}
+
+.logout-btn {
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid #f8c8dc;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #f8c8dc;
+    color: #000;
+}
+
+/* Glowing Buttons and Active Link */
+.active,
+.cta-button {
+    color: #000 !important;
+    background-color: #f8c8dc;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 0 10px #f8c8dc, 0 0 20px #f8c8dc;
+    transition: box-shadow 0.3s;
+    border: none;
+}
+
+.cta-button {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.active:hover,
+.cta-button:hover {
+    box-shadow: 0 0 15px #f8c8dc, 0 0 30px #f8c8dc;
+}
+
+/* Content Card Container */
+.content-card {
+    background-color: #1a1a1a;
+    border: 2px solid #f8c8dc;
+    border-radius: 15px;
+    box-shadow: 0 0 15px #f8c8dc;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 50px;
+    text-align: center;
+}
+
+.content-card h2 {
+    color: #f8c8dc;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.content-card p {
+    color: #fff;
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+/* Adjustments for other pages */
+.content {
+    /* Kept for consistency on blog and contact pages */
+    padding: 40px;
+    max-width: 800px;
+    margin: auto;
+    line-height: 1.6;
+}
+    </style>
 </head>
 <body>
     <div class="header-container">
