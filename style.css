@@ -1,0 +1,130 @@
+/*
+    Standardized CSS for Global Innovator's Program Website
+    This file contains all repeated styles for a consistent look.
+*/
+
+/* General Body and Font Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000; /* Black background */
+    color: #fff; /* White text for content */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Banner Styles */
+.header-banner {
+    background-color: #000;
+    color: #f8c8dc; /* Pastel Pink */
+    text-align: center;
+    padding: 20px;
+    border-bottom: 2px solid #f8c8dc;
+}
+
+.header-banner h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+/* Navigation Menu Styles */
+nav {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 2px solid #f8c8dc;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #000;
+    border: 1px solid #f8c8dc; /* Pastel Pink border for buttons */
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+nav a:hover {
+    background-color: #f8c8dc; /* Pastel Pink background on hover */
+    color: #000; /* Black text on hover */
+}
+
+/* Main Content Area Styles */
+.content {
+    padding: 40px;
+    max-width: 800px; /* Maximum width for readability */
+    margin: auto; /* Center the content block */
+    line-height: 1.6;
+}
+
+.content h2 {
+    color: #f8c8dc; /* Pastel Pink for main headings */
+    text-align: center;
+}
+
+/* Blog Page Specific Styles */
+.blog-post {
+    border: 1px solid #f8c8dc;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.blog-post h3 {
+    color: #f8c8dc;
+    margin-top: 0;
+}
+
+.blog-post a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.blog-post a:hover {
+    text-decoration: underline;
+}
+
+/* Contact Form Specific Styles */
+.contact-form {
+    background-color: #111; /* Slightly lighter black for the form container */
+    padding: 20px;
+    border: 1px solid #f8c8dc;
+    border-radius: 10px;
+    text-align: left;
+    max-width: 600px;
+    margin: auto;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #f8c8dc;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #f8c8dc;
+    background-color: #222; /* Another shade of black for input fields */
+    color: #fff;
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensures padding doesn't affect total width */
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #f8c8dc;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.contact-form button:hover {
+    background-color: #fff;
+}
