@@ -4,145 +4,206 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global Innovator's Program - Blog</title>
-    
     <style>
         /* General Body and Font Styles */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
 
-        /* Header and Navigation Styles */
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 40px;
-            border-bottom: 2px solid #f8c8dc;
-        }
+/* Header and Navigation Styles */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    border-bottom: 2px solid #f8c8dc;
+}
 
-        .header-banner h1 {
-            color: #f8c8dc;
-            font-size: 1.8em;
-            margin: 0;
-        }
+.header-banner h1 {
+    color: #f8c8dc;
+    font-size: 1.8em;
+    margin: 0;
+}
 
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 15px;
-            margin: 0 5px;
-            background-color: transparent;
-            border: none;
-            border-radius: 5px;
-            transition: color 0.3s;
-        }
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    transition: color 0.3s;
+}
 
-        nav a:hover {
-            color: #f8c8dc;
-        }
+nav a:hover {
+    color: #f8c8dc;
+}
 
-        /* User Info Section */
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+/* User Info Section */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-        .username {
-            color: #f8c8dc;
-            font-size: 0.9em;
-        }
+.username {
+    color: #f8c8dc;
+    font-size: 0.9em;
+}
 
-        .logout-btn {
-            color: #fff;
-            background-color: transparent;
-            border: 1px solid #f8c8dc;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
+.logout-btn {
+    color: #fff;
+    background-color: transparent;
+    border: 1px solid #f8c8dc;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-        .logout-btn:hover {
-            background-color: #f8c8dc;
-            color: #000;
-        }
+.logout-btn:hover {
+    background-color: #f8c8dc;
+    color: #000;
+}
 
-        /* Glowing Buttons and Active Link */
-        .active,
-        .cta-button {
-            color: #000 !important;
-            background-color: #f8c8dc;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-weight: bold;
-            text-decoration: none;
-            box-shadow: 0 0 10px #f8c8dc, 0 0 20px #f8c8dc;
-            transition: box-shadow 0.3s;
-            border: none;
-        }
+/* Glowing Buttons and Active Link */
+.active,
+.cta-button {
+    color: #000 !important;
+    background-color: #f8c8dc;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 0 10px #f8c8dc, 0 0 20px #f8c8dc;
+    transition: box-shadow 0.3s;
+    border: none;
+}
 
-        .cta-button {
-            display: inline-block;
-            margin-top: 20px;
-        }
+.cta-button {
+    display: inline-block;
+    margin-top: 20px;
+}
 
-        .active:hover,
-        .cta-button:hover {
-            box-shadow: 0 0 15px #f8c8dc, 0 0 30px #f8c8dc;
-        }
+.active:hover,
+.cta-button:hover {
+    box-shadow: 0 0 15px #f8c8dc, 0 0 30px #f8c8dc;
+}
 
-        /* Content Card Container */
-        .content-card {
-            background-color: #1a1a1a;
-            border: 2px solid #f8c8dc;
-            border-radius: 15px;
-            box-shadow: 0 0 15px #f8c8dc;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 50px;
-            text-align: center;
-        }
+/* Content Card Container */
+.content-card {
+    background-color: #1a1a1a;
+    border: 2px solid #f8c8dc;
+    border-radius: 15px;
+    box-shadow: 0 0 15px #f8c8dc;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 50px;
+    text-align: center;
+}
 
-        .content-card h2 {
-            color: #f8c8dc;
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
+.content-card h2 {
+    color: #f8c8dc;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
 
-        .content-card p {
-            color: #fff;
-            line-height: 1.6;
-            font-size: 1.1em;
-        }
-        
-        /* Specific Styles for Blog Posts */
-        .blog-post {
-            border: 1px solid #f8c8dc;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            text-align: left;
-        }
+.content-card p {
+    color: #fff;
+    line-height: 1.6;
+    font-size: 1.1em;
+}
 
-        .blog-post h3 {
-            color: #f8c8dc;
-            margin-top: 0;
-        }
+/* New: Blog Page Styles */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
 
-        .blog-post a {
-            text-decoration: none;
-            color: #fff;
-            display: block;
-        }
+.blog-card {
+    background-color: #1a1a1a;
+    border: 1px solid #f8c8dc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 5px #f8c8dc;
+}
 
-        .blog-post a:hover {
-            text-decoration: underline;
-        }
+.blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px #f8c8dc;
+}
+
+.blog-card h3 {
+    color: #f8c8dc;
+    margin-top: 0;
+}
+
+.blog-card .excerpt {
+    color: #ccc;
+    font-size: 0.9em;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.blog-card .date {
+    color: #aaa;
+    font-size: 0.8em;
+}
+
+/* New: Individual Blog Post Styles */
+.blog-post {
+    background-color: #1a1a1a;
+    border: 2px solid #f8c8dc;
+    border-radius: 15px;
+    box-shadow: 0 0 15px #f8c8dc;
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 50px;
+    text-align: left;
+    line-height: 1.6;
+}
+
+.blog-post h2 {
+    color: #f8c8dc;
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.blog-post .meta {
+    color: #aaa;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.blog-post p {
+    color: #fff;
+    margin-bottom: 1em;
+}
+
+.back-button {
+    display: inline-block;
+    color: #f8c8dc;
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 20px;
+    transition: color 0.3s;
+}
+
+.back-button:hover {
+    color: #fff;
+}
     </style>
 </head>
 <body>
@@ -160,29 +221,52 @@
             <button class="logout-btn">Logout</button>
         </div>
     </div>
-    
-    <div class="content-card">
-        <div class="content">
-            <h2>My Blog Posts</h2>
-            <div class="blog-post">
-                <a href="blog1.html">
-                    <h3>The First Steps: A Look at Program Onboarding</h3>
-                    <p>Date: September 15, 2025</p>
-                    <p>Exploring my initial thoughts and feelings during the first week of the program.</p>
+
+    <div id="blog" class="page">
+        <div class="content-card">
+            <h2>Innovation Insights</h2>
+            <div class="blog-grid">
+                <a href="blog-post-1.html" class="blog-card-link">
+                    <div class="blog-card">
+                        <h3>The Future of Web Development</h3>
+                        <p class="excerpt">Explore the latest trends and technologies shaping the future of web development, from AI integration to progressive web apps.</p>
+                        <p class="date">March 15, 2024</p>
+                    </div>
                 </a>
-            </div>
-            <div class="blog-post">
-                <a href="blog2.html">
-                    <h3>Team Collaboration: The Art of Innovation</h3>
-                    <p>Date: September 20, 2025</p>
-                    <p>A deep dive into the importance of teamwork and how it fuels creative solutions.</p>
+                <a href="blog-post-2.html" class="blog-card-link">
+                    <div class="blog-card">
+                        <h3>Design Principles for Modern UX</h3>
+                        <p class="excerpt">Learn about the essential design principles that create exceptional user experiences in today's digital landscape.</p>
+                        <p class="date">March 10, 2024</p>
+                    </div>
                 </a>
-            </div>
-            <div class="blog-post">
-                <a href="#">
-                    <h3>Upcoming Post Title</h3>
-                    <p>Date: TBD</p>
-                    <p>A placeholder for your next blog post.</p>
+                <a href="blog-post-3.html" class="blog-card-link">
+                    <div class="blog-card">
+                        <h3>Building Responsive Websites</h3>
+                        <p class="excerpt">A comprehensive guide to creating websites that work perfectly across all devices and screen sizes.</p>
+                        <p class="date">March 5, 2024</p>
+                    </div>
+                </a>
+                <a href="blog-post-4.html" class="blog-card-link">
+                    <div class="blog-card">
+                        <h3>JavaScript Best Practices</h3>
+                        <p class="excerpt">Discover the most effective JavaScript coding practices that will make your code more maintainable and efficient.</p>
+                        <p class="date">February 28, 2024</p>
+                    </div>
+                </a>
+                <a href="blog-post-5.html" class="blog-card-link">
+                    <div class="blog-card">
+                        <h3>CSS Grid vs Flexbox</h3>
+                        <p class="excerpt">Understanding when to use CSS Grid and when to use Flexbox for optimal layout design and performance.</p>
+                        <p class="date">February 20, 2024</p>
+                    </div>
+                </a>
+                <a href="blog-post-6.html" class="blog-card-link">
+                    <div class="blog-card">
+                        <h3>Web Performance Optimization</h3>
+                        <p class="excerpt">Essential techniques for optimizing website performance and improving user experience through faster load times.</p>
+                        <p class="date">February 15, 2024</p>
+                    </div>
                 </a>
             </div>
         </div>
