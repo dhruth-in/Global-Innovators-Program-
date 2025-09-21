@@ -18,7 +18,7 @@ body {
     color: #f8c8dc; /* Pastel Pink */
     text-align: center;
     padding: 20px;
-    border-bottom: 2px solid #f8c8dc;
+    /* Removed: border-bottom: 2px solid #f8c8dc; */
 }
 
 .header-banner h1 {
@@ -30,7 +30,7 @@ body {
 nav {
     text-align: center;
     padding: 10px;
-    border-bottom: 2px solid #f8c8dc;
+    /* Removed: border-bottom: 2px solid #f8c8dc; */
 }
 
 nav a {
