@@ -17,27 +17,44 @@
         /* Header and Navigation Styles */
         .header-container {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column; /* Stack items vertically on smaller screens */
             align-items: center;
-            padding: 10px 40px;
+            padding: 10px 20px; /* Reduced padding for smaller screens */
             border-bottom: 2px solid #f8c8dc;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .header-container {
+                flex-direction: row; /* Horizontal layout on wider screens */
+                justify-content: space-between;
+                padding: 10px 40px;
+            }
         }
 
         .header-banner h1 {
             color: #f8c8dc;
-            font-size: 1.8em;
-            margin: 0;
+            font-size: 1.5em; /* Smaller font for mobile */
+            margin: 0 0 10px 0; /* Spacing below the title on small screens */
+        }
+
+        @media (min-width: 768px) {
+            .header-banner h1 {
+                font-size: 1.8em;
+                margin: 0;
+            }
         }
 
         nav a {
             color: #fff;
             text-decoration: none;
-            padding: 10px 15px;
-            margin: 0 5px;
+            padding: 8px 12px; /* Reduced padding for links */
+            margin: 0 3px;
             background-color: transparent;
             border: none;
             border-radius: 5px;
             transition: color 0.3s;
+            font-size: 0.9em; /* Smaller font for links */
         }
 
         nav a:hover {
@@ -56,6 +73,7 @@
             box-shadow: 0 0 10px #f8c8dc, 0 0 20px #f8c8dc;
             transition: box-shadow 0.3s;
             border: none;
+            font-size: 1em;
         }
 
         .cta-button {
@@ -74,24 +92,46 @@
             border: 2px solid #f8c8dc;
             border-radius: 15px;
             box-shadow: 0 0 15px #f8c8dc;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 50px;
+            max-width: 90%; /* Increased max-width for mobile */
+            margin: 20px auto; /* Adjusted margin for mobile */
+            padding: 30px; /* Reduced padding */
             text-align: left;
+        }
+
+        @media (min-width: 768px) {
+            .blog-post {
+                max-width: 800px;
+                margin: 40px auto;
+                padding: 50px;
+            }
         }
 
         .blog-post h2 {
             color: #f8c8dc;
-            font-size: 2.5em;
+            font-size: 1.8em; /* Adjusted font size for mobile */
             margin-bottom: 10px;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .blog-post h2 {
+                font-size: 2.5em;
+            }
         }
 
         .blog-post p {
             color: #fff;
-            line-height: 1.6;
-            font-size: 1.1em;
+            line-height: 1.5; /* Adjusted line-height for readability */
+            font-size: 1em; /* Adjusted font size */
             margin-bottom: 1em;
             text-align: justify;
+        }
+
+        @media (min-width: 768px) {
+            .blog-post p {
+                line-height: 1.6;
+                font-size: 1.1em;
+            }
         }
 
         .blog-post .meta {
@@ -99,6 +139,7 @@
             font-style: italic;
             font-size: 0.9em;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         .back-button {
@@ -106,10 +147,25 @@
             text-decoration: none;
             display: inline-block;
             margin-bottom: 20px;
+            transition: color 0.3s;
         }
 
         .back-button:hover {
             text-decoration: underline;
+        }
+
+        /* New: H3 and List styles for mobile */
+        .blog-post h3 {
+            font-size: 1.4em;
+            color: #f8c8dc;
+        }
+
+        .blog-post ul {
+            padding-left: 20px; /* Adjust list padding for smaller screens */
+        }
+
+        .blog-post ul li {
+            margin-bottom: 15px; /* Spacing between list items */
         }
     </style>
 </head>
