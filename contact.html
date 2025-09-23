@@ -18,53 +18,72 @@
         /* Header and Navigation Styles */
         .header-container {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column; /* Stack items vertically on smaller screens */
             align-items: center;
-            padding: 10px 40px;
+            padding: 10px 20px; /* Reduced padding for smaller screens */
             border-bottom: 2px solid #f8c8dc;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .header-container {
+                flex-direction: row; /* Horizontal layout on wider screens */
+                justify-content: space-between;
+                padding: 10px 40px;
+            }
         }
 
         .header-banner h1 {
             color: #f8c8dc;
-            font-size: 1.8em;
-            margin: 0;
+            font-size: 1.5em; /* Smaller font for mobile */
+            margin: 0 0 10px 0; /* Spacing below the title on small screens */
+        }
+
+        @media (min-width: 768px) {
+            .header-banner h1 {
+                font-size: 1.8em;
+                margin: 0;
+            }
         }
 
         nav a {
             color: #fff;
             text-decoration: none;
-            padding: 10px 15px;
-            margin: 0 5px;
+            padding: 8px 12px; /* Reduced padding for links */
+            margin: 0 3px;
             background-color: transparent;
             border: none;
             border-radius: 5px;
             transition: color 0.3s;
+            font-size: 0.9em; /* Smaller font for links */
         }
 
         nav a:hover {
             color: #f8c8dc;
         }
 
-        /* User Info Section */
+        /* User Info Section (not in original HTML but useful for a full site) */
         .user-info {
             display: flex;
             align-items: center;
             gap: 10px;
+            margin-top: 10px;
         }
 
         .username {
             color: #f8c8dc;
-            font-size: 0.9em;
+            font-size: 0.8em;
         }
 
         .logout-btn {
             color: #fff;
             background-color: transparent;
             border: 1px solid #f8c8dc;
-            padding: 8px 15px;
+            padding: 6px 12px;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
+            font-size: 0.8em;
         }
 
         .logout-btn:hover {
@@ -84,6 +103,7 @@
             box-shadow: 0 0 10px #f8c8dc, 0 0 20px #f8c8dc;
             transition: box-shadow 0.3s;
             border: none;
+            font-size: 1em;
         }
 
         .cta-button {
@@ -102,22 +122,44 @@
             border: 2px solid #f8c8dc;
             border-radius: 15px;
             box-shadow: 0 0 15px #f8c8dc;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 50px;
+            max-width: 90%; /* Increased max-width for mobile */
+            margin: 20px auto; /* Adjusted margin for mobile */
+            padding: 30px; /* Reduced padding */
             text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .content-card {
+                max-width: 800px;
+                margin: 40px auto;
+                padding: 50px;
+            }
         }
 
         .content-card h2 {
             color: #f8c8dc;
-            font-size: 2.5em;
-            margin-bottom: 20px;
+            font-size: 1.8em; /* Adjusted font size for mobile */
+            margin-bottom: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .content-card h2 {
+                font-size: 2.5em;
+                margin-bottom: 20px;
+            }
         }
 
         .content-card p {
             color: #fff;
-            line-height: 1.6;
-            font-size: 1.1em;
+            line-height: 1.5; /* Adjusted line-height for readability */
+            font-size: 1em; /* Adjusted font size */
+        }
+
+        @media (min-width: 768px) {
+            .content-card p {
+                line-height: 1.6;
+                font-size: 1.1em;
+            }
         }
 
         /* New: Contact Info Styles */
@@ -127,6 +169,7 @@
         .contact-info h3 {
             color: #f8c8dc;
             margin-bottom: 5px;
+            font-size: 1.2em;
         }
         .contact-info a {
             color: #fff;
