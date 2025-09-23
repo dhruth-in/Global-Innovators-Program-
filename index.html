@@ -6,127 +6,160 @@
     <title>Global Innovator's Program - Home</title>
     <style>
         /* General Body and Font Styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #000;
-    color: #fff;
-    margin: 0;
-    padding: 0;
-}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
 
-/* Header and Navigation Styles */
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 40px;
-    border-bottom: 2px solid #f8c8dc;
-}
+        /* Header and Navigation Styles */
+        .header-container {
+            display: flex;
+            flex-direction: column; /* Stacks items vertically on smaller screens */
+            align-items: center;
+            padding: 10px 20px; /* Reduced padding for smaller screens */
+            border-bottom: 2px solid #f8c8dc;
+            text-align: center;
+        }
 
-.header-banner h1 {
-    color: #f8c8dc;
-    font-size: 1.8em;
-    margin: 0;
-}
+        @media (min-width: 768px) {
+            .header-container {
+                flex-direction: row; /* Restores horizontal layout on wider screens */
+                justify-content: space-between;
+                padding: 10px 40px;
+            }
+        }
 
-nav a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 15px;
-    margin: 0 5px;
-    background-color: transparent;
-    border: none;
-    border-radius: 5px;
-    transition: color 0.3s;
-}
+        .header-banner h1 {
+            color: #f8c8dc;
+            font-size: 1.5em; /* Smaller font size for mobile */
+            margin: 0 0 10px 0; /* Adds spacing below the title on small screens */
+        }
 
-nav a:hover {
-    color: #f8c8dc;
-}
+        @media (min-width: 768px) {
+            .header-banner h1 {
+                font-size: 1.8em;
+                margin: 0;
+            }
+        }
 
-/* User Info Section */
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 12px; /* Reduced padding for links */
+            margin: 0 3px;
+            background-color: transparent;
+            border: none;
+            border-radius: 5px;
+            transition: color 0.3s;
+            font-size: 0.9em; /* Smaller font for links */
+        }
 
-.username {
-    color: #f8c8dc;
-    font-size: 0.9em;
-}
+        nav a:hover {
+            color: #f8c8dc;
+        }
 
-.logout-btn {
-    color: #fff;
-    background-color: transparent;
-    border: 1px solid #f8c8dc;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+        /* User Info Section (not in original HTML but good for mobile) */
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
 
-.logout-btn:hover {
-    background-color: #f8c8dc;
-    color: #000;
-}
+        .username {
+            color: #f8c8dc;
+            font-size: 0.8em;
+        }
 
-/* Glowing Buttons and Active Link */
-.active,
-.cta-button {
-    color: #000 !important;
-    background-color: #f8c8dc;
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-decoration: none;
-    box-shadow: 0 0 10px #f8c8dc, 0 0 20px #f8c8dc;
-    transition: box-shadow 0.3s;
-    border: none;
-}
+        .logout-btn {
+            color: #fff;
+            background-color: transparent;
+            border: 1px solid #f8c8dc;
+            padding: 6px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 0.8em;
+        }
 
-.cta-button {
-    display: inline-block;
-    margin-top: 20px;
-}
+        .logout-btn:hover {
+            background-color: #f8c8dc;
+            color: #000;
+        }
 
-.active:hover,
-.cta-button:hover {
-    box-shadow: 0 0 15px #f8c8dc, 0 0 30px #f8c8dc;
-}
+        /* Glowing Buttons and Active Link */
+        .active,
+        .cta-button {
+            color: #000 !important;
+            background-color: #f8c8dc;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 0 10px #f8c8dc, 0 0 20px #f8c8dc;
+            transition: box-shadow 0.3s;
+            border: none;
+            font-size: 1em; /* Ensures readability on small screens */
+        }
 
-/* Content Card Container */
-.content-card {
-    background-color: #1a1a1a;
-    border: 2px solid #f8c8dc;
-    border-radius: 15px;
-    box-shadow: 0 0 15px #f8c8dc;
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 50px;
-    text-align: center;
-}
+        .cta-button {
+            display: inline-block;
+            margin-top: 20px;
+        }
 
-.content-card h2 {
-    color: #f8c8dc;
-    font-size: 2.5em;
-    margin-bottom: 20px;
-}
+        .active:hover,
+        .cta-button:hover {
+            box-shadow: 0 0 15px #f8c8dc, 0 0 30px #f8c8dc;
+        }
 
-.content-card p {
-    color: #fff;
-    line-height: 1.6;
-    font-size: 1.1em;
-}
+        /* Content Card Container */
+        .content-card {
+            background-color: #1a1a1a;
+            border: 2px solid #f8c8dc;
+            border-radius: 15px;
+            box-shadow: 0 0 15px #f8c8dc;
+            max-width: 90%; /* Increased max-width for mobile */
+            margin: 20px auto; /* Adjusted margin for mobile */
+            padding: 30px; /* Reduced padding */
+            text-align: center;
+        }
 
-/* Adjustments for other pages */
-.content {
-    /* Kept for consistency on blog and contact pages */
-    padding: 40px;
-    max-width: 800px;
-    margin: auto;
-    line-height: 1.6;
-}
+        @media (min-width: 768px) {
+            .content-card {
+                max-width: 800px;
+                margin: 40px auto;
+                padding: 50px;
+            }
+        }
+
+        .content-card h2 {
+            color: #f8c8dc;
+            font-size: 1.8em; /* Adjusted font size for mobile */
+            margin-bottom: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .content-card h2 {
+                font-size: 2.5em;
+                margin-bottom: 20px;
+            }
+        }
+
+        .content-card p {
+            color: #fff;
+            line-height: 1.5; /* Adjusted line-height for readability */
+            font-size: 1em; /* Adjusted font size */
+        }
+
+        @media (min-width: 768px) {
+            .content-card p {
+                line-height: 1.6;
+                font-size: 1.1em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -139,7 +172,6 @@ nav a:hover {
             <a href="blog.html">Blog</a>
             <a href="contact.html">Contact</a>
         </nav>
-        
     </div>
     
     <div class="content-card">
